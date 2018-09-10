@@ -14,17 +14,17 @@
 
 ## 配置文件
 
-配置文件位于 /home/pi/.dingdang/profile.yml 下（注意是加了点的 .dingdang ）。每次修改，需重启叮当生效。
+配置文件位于 /home/robot/aliada-robot/.aliada/profile.yml 下（注意是加了点的 .aliada ）。每次修改，需重启阿里阿达生效。
 
 > 注意注意注意注意：如果使用网易邮箱，注意阅读 [网易邮箱说明](#网易邮箱说明) 。另外不建议使用 QQ 邮箱。
 
 ``` yml
-robot_name: 'DINGDANG'  # 必须使用大写
-robot_name_cn: '叮当'
-first_name: '伟洲'
-last_name: '潘'
-timezone: HKT
-location: '深圳'
+robot_name: 'ALIADA'  # 必须使用大写
+robot_name_cn: '阿里阿达'
+first_name: '主人'
+last_name: 'Qi'
+timezone: CST
+location: '上海'
 
 # 是否接入微信
 wechat: true
@@ -108,7 +108,7 @@ pocketsphinx:
 # snowboy 唤醒SST引擎（可选）
 # https://snowboy.kitt.ai/dashboard
 snowboy:
-    model: '/home/pi/dingdang/client/snowboy/dingdangdingdang.pmdl'  # 唤醒词模型
+    model: '/home/robot/aliada-robot/aliada/client/snowboy/aliada.pmdl'  # 唤醒词模型
     sensitivity: "0.5"  # 敏感度
 
 # 百度语音服务
@@ -208,16 +208,12 @@ camera:
 
 
 #######################
-# 第三方插件的配置
+# 插件配置
 #######################
-
-# 在这里放第三方插件的配置
-# https://github.com/wzpan/dingdang-contrib
-```
 
 ## 配置USB麦克风
 
-> 坚持住！配置麦克风和音响是新用户使用叮当过程中最容易卡住的环节。只要完成这一步，后面就没什么难题啦。
+> 坚持住！配置麦克风和音响是新用户使用阿里阿达过程中最容易卡住的环节。只要完成这一步，后面就没什么难题啦。
 
 > 如果您使用的是 ReSpeaker 2 Mic HAT，则请参见 [ReSpeaker 2-Mics Pi HAT 配置教程](respeaker-2-mics-pi-hat)，无需阅读本节设置。
 
@@ -350,9 +346,9 @@ aplay temp.wav
 
 ## 修改唤醒词
 
-> 在确认dingdang完全工作之前，建议不要急着修改唤醒词。等完全可用了再尝试修改唤醒词。
+> 在确认Aliada完全工作之前，建议不要急着修改唤醒词。等完全可用了再尝试修改唤醒词。
 
-叮当默认的唤醒词是“嘿叮当”，如果需要换成其他唤醒词，根据你选用的 STT 引擎，有不同的方法。
+阿里阿达默认的唤醒词是“阿里阿达”，如果需要换成其他唤醒词，根据你选用的 STT 引擎，有不同的方法。
 
 ### 如果使用的是 PocketSphinx
 
@@ -367,13 +363,13 @@ ROBOT
 其中 `ROBOT` 替换为你需要的机器人名字的全拼。
 
 * 到 [lmtool](http://www.speech.cs.cmu.edu/tools/lmtool-new.html) 里上传你刚刚创建的 keyword.txt 并编译成模型。
-* 把得到的 `.dic` 文件和 `.lm` 文件分别重命名为 `dictionary` 和 `languagemodel`，替换 /home/pi/.dingdang/vocabularies/pocketsphinx-vocabulary/keyword 下的同名文件。
-* 重新运行 dingdang ，看看新的唤醒词灵敏度如何。如果不理想，换成别的唤醒词。
+* 把得到的 `.dic` 文件和 `.lm` 文件分别重命名为 `dictionary` 和 `languagemodel`，替换 /home/robot/aliada-robot/.aliada/vocabularies/pocketsphinx-vocabulary/keyword 下的同名文件。
+* 重新运行 Aliada ，看看新的唤醒词灵敏度如何。如果不理想，换成别的唤醒词。
 
 ### 如果使用的是 snowboy
 
 * 到 https://snowboy.kitt.ai/ ，训练你自己的模型；
-* 下载模型并上传到树莓派中，存放的路径可以随意，比如 /home/.dingdang/snowboy/my-model.pmdl ；
+* 下载模型并上传到树莓派中，存放的路径可以随意，比如 /home/.aliada/snowboy/my-model.pmdl ；
 * 修改 profile.yml 中 `snowboy` 的 `model` 的路径为你训练好的模型的路径。
 
 要注意的是，snowboy 的唤醒词最好选择更多人贡献的语音，这样可以得到更为平均的唤醒模型。成熟的商业音箱的唤醒，是针对某个唤醒词，同样的麦克风环境，录入成百上千个语料，进行训练的结果。所以效果会好很多。如果只用自己录制的几个样本作为训练样本，识别率和唤醒率都不会很理想。
@@ -484,13 +480,13 @@ http://config.mail.163.com/settings/imap/index.jsp?uid=您的邮箱地址
 
 ## 设置开机启动
 
-如果希望开机启动叮当，可以参考 [小技巧：设置开机启动](http://bbs.hahack.com/t/topic/43)。
+如果希望开机启动阿里阿达，可以参考 [小技巧：设置开机启动](http://bbs.hahack.com/t/topic/43)。
 
-启动后如需登录微信，可以使用 [SendQR](https://github.com/wzpan/dingdang-robot/wiki/plugins#sendqr) 插件，叫叮当“发送微信二维码”，将发送二维码图片到您邮箱用，再拿手机扫码。也可以使用 @hhao 贡献的 [webserver](https://github.com/dingdang-robot/dingdang-contrib/blob/master/WebServer.py) 插件，叫叮当 “启动Web服务器”，然后访问 http://叮当的ip:8080， 里头找到 wxqr.png ，再拿手机扫码。
+启动后如需登录微信，可以使用SendQR插件，叫阿里阿达“发送微信二维码”，将发送二维码图片到您邮箱用，再拿手机扫码。也可以使用webserver插件，叫阿里阿达 “启动Web服务器”，然后访问 http://阿里阿达的ip:8080， 里头找到 wxqr.png ，再拿手机扫码。
 
 ## 设置摄像头
 
-叮当支持使用树莓派的 5MP 摄像头（CSI接口）或者普通 USB 摄像头（USB接口）进行拍照。
+阿里阿达支持使用树莓派的 5MP 摄像头（CSI接口）或者普通 USB 摄像头（USB接口）进行拍照。
 
 其中，5MP 摄像头是 Raspbian 系统自带支持的。设置方法可参考[这篇文章](http://shumeipai.nxez.com/2013/10/07/raspberry-pi-to-install-the-camera-module.html)。
 
@@ -500,7 +496,7 @@ http://config.mail.163.com/settings/imap/index.jsp?uid=您的邮箱地址
 sudo apt-get install fswebcam
 ```
 
-然后在 ~/.dingdang/profile.yml 中将 `camera` 里的 `usb_camera` 选项打开：
+然后在 ~/.aliada/profile.yml 中将 `camera` 里的 `usb_camera` 选项打开：
 
 ``` yml
 camera:
@@ -510,4 +506,4 @@ camera:
 
 ## 其他常见问题
 
-请参见 [常见问题自助](https://github.com/wzpan/dingdang-robot/wiki/troubleshooting)
+请参见 [常见问题自助](https://github.com/wzpan/aliada-robot/wiki/troubleshooting)

@@ -1,4 +1,4 @@
-# How to install chundesy on raspberry pie?
+# How to install aliada on raspberry pie?
 
 ## Table of Contents
 
@@ -59,13 +59,13 @@ sudo pip install -r client/requirements.txt
 ```
 
 接下来创建一个 **.aliada** 目录，该目录用于维护你的个人数据（注意是带了点的 `.aliada` 目录）：
-Next create a **.aliada** directory under "/home/robot/aliada-car-robot", the directory is used to maintain your personal data.
+Next create a **.aliada** directory under "/home/robot/aliada-robot", the directory is used to maintain your personal data.
 
 ``` sh
 mkdir /home/robot/aliada-car-robot/.aliada
 ```
 
-Copy [叮当配置文件](https://github.com/wzpan/dingdang-robot/wiki/configuration#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6) to "/home/robot/chundesy-car-robot/.chundesy" as a file named "profile.yml".
+Copy [配置文件](https://github.com/wzpan/aliada-robot/wiki/configuration) to "/home/robot/aliada-robot/.aliada" as a file named "profile.yml".
 
 ### Install Sox
 
@@ -99,12 +99,12 @@ sudo apt-get install cmake uuid-dev
 完成后创建一个 .taskrc 文件用来记录日程：
 
 ```
-touch /home/pi/.taskrc
+touch /home/robot/.taskrc
 ```
 
 ### Install PocketSphinx offline STT engine
 
-PocketSphinx 是叮当所使用的离线STT引擎，用于离线唤醒。要使用它总共需要安装如下一些程序：
+PocketSphinx 是阿里阿达所使用的离线STT引擎，用于离线唤醒。要使用它总共需要安装如下一些程序：
 
 * sphinxbase & pocketsphinx
 * CMUCLMTK
@@ -205,25 +205,25 @@ sudo make
 sudo cp ../../bin/phonetisaurus-g2p /usr/local/bin/phonetisaurus-g2p
 ```
 
-然后需要下载已编译好的 Phonetisaurus FST 模型以及叮当内置的词汇模型：
+然后需要下载已编译好的 Phonetisaurus FST 模型以及阿里阿达内置的词汇模型：
 
-* g014b2b.zip：https://pan.baidu.com/s/1o7MrWIA 下载完后放在 /home/pi/ 目录下执行 `unzip` 命令解压。
-* vocabularies.zip：https://pan.baidu.com/s/1kWfqP3x （[备选下载地址](https://share.weiyun.com/a7d78e697fb684af048229e9d531ba80)）下载完后放在 /home/pi/**.dingdang**/ 目录下执行 `unzip` 命令解压。注意是带了点的
- `.dingdang` 目录。
+* g014b2b.zip：https://pan.baidu.com/s/1o7MrWIA 下载完后放在 /home/robot/ 目录下执行 `unzip` 命令解压。
+* vocabularies.zip：https://pan.baidu.com/s/1kWfqP3x （[备选下载地址](https://share.weiyun.com/a7d78e697fb684af048229e9d531ba80)）下载完后放在 /home/robot/**.aliada**/ 目录下执行 `unzip` 命令解压。注意是带了点的
+ `.aliada` 目录。
 
-注意如果你是在另外一台机上下载这两个文件，你可能需要使用 [fstp](http://www.cnblogs.com/chen1987lei/archive/2010/11/26/1888391.html) 命令来发送文件至叮当的主机上。
+注意如果你是在另外一台机上下载这两个文件，你可能需要使用 [fstp](http://www.cnblogs.com/chen1987lei/archive/2010/11/26/1888391.html) 命令来发送文件至阿里阿达的主机上。
 
-### 配置叮当
+### 配置阿里阿达
 
-根据你的实际情况和需求[配置叮当](https://github.com/wzpan/dingdang-robot/wiki/configuration) 。
+根据你的实际情况和需求[配置阿里阿达](https://github.com/wzpan/aliada-robot/wiki/configuration) 。
 
-### 运行叮当
+### 运行阿里阿达
 
-最后，运行叮当，看看有没有提示缺少什么库，根据提示安装一下即可。
+最后，运行阿里阿达，看看有没有提示缺少什么库，根据提示安装一下即可。
 
 ``` python
-cd dingdang
-python dingdang.py
+cd aliada-robot
+python aliada.py
 ```
 
 然后查看 [安装后续](#安装后续)。
@@ -241,26 +241,18 @@ jack server is not running or cannot be started
 1. 让树莓派连接网络及开启 SSH ：参考 [这篇文章](http://shumeipai.nxez.com/2017/09/13/raspberry-pi-network-configuration-before-boot.html) ，让树莓派连接网络并开启 SSH 。
 
 2. 终端执行 `raspi-config` 进入树莓派命令，进入 Advanced Options ，开启 Expand File System，扩展您的 Micro-SD 卡空间（否则刷完只有 8G 容量）。使用 Respeaker 2-Mics Pi HAT 的用户，还推荐进入 Interfacing Options ，开启 SPI ，以支持控制 LED 灯。
-3. 参考 [配置](https://github.com/wzpan/dingdang-robot/wiki/configuration) 一节，完成配置。
-4. 进入 dingdang 的目录，更新一下 dingdang ：
+3. 参考 [配置](https://github.com/wzpan/aliada-robot/wiki/configuration) 一节，完成配置。
+4. 进入 aliada 的目录，更新一下 aliada ：
 
 ``` sh
-cd ~/dingdang
+cd ~/aliada-robot
 git pull
 ```
 
-5. 如果安装了第三方插件 dingdang-contrib，进入 .dingdang/contrib，更新下第三方插件：
+5. 运行阿里阿达：
 
 ``` sh
-cd /home/pi/.dingdang/contrib
-git pull
-pip install --upgrade -r requirements.txt
-```
-
-6. 运行叮当：
-
-``` sh
-python dingdang.py
+python aliada.py
 ```
 
 如果设置开启了微信，会出现一个二维码，用微信扫一扫登录即可完成微信接入（相当于登录了一个微信客户端）。
